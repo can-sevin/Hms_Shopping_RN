@@ -48,7 +48,7 @@ export default class LoginForm extends Component {
           color={'#F4E2D8'}
         />
         <MyButton
-          text={'Sign In'}
+          text={'Sign Inn'}
           backgroundColor={'#BA5370'}
           color={'#F4E2D8'}
         />
@@ -60,7 +60,7 @@ export default class LoginForm extends Component {
           }
           enabled={true}
           theme={
-            RNHMSAccount.HmsAccoun
+            RNHMSAccount.HmsAccount
               .CONSTANT_HUAWEI_ID_AUTH_BUTTON_THEME_FULL_TITLE
           }
           cornerRadius={
@@ -69,10 +69,11 @@ export default class LoginForm extends Component {
           }
           onPress={onSignIn}
         />
+
         <View style={styles.signUpArea}>
           <Text style={styles.signUpDescription}>Don't have a account?</Text>
           <TouchableOpacity>
-            <Text style={styles.signUpText}>Sign Up</Text>
+            <Text style={styles.signUpText}>See our stores near you</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -81,6 +82,10 @@ export default class LoginForm extends Component {
 }
 
 const styles = StyleSheet.create({
+  viewcontainer: {
+    marginTop: 20,
+    height: 38,
+  },
   textSignIn: {
     textAlign: 'left',
     fontSize: 20,
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   signUpDescription: {
-    paddingVertical: 8,
+    paddingVertical: 16,
     color: '#999',
   },
   signUpText: {

@@ -8,11 +8,6 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.huawei.hms.push.RNHwPushPackage;
-import com.huawei.hms.rn.account.HmsAccountPackage;
-import com.huawei.hms.rn.ads.RNHMSAdsPackage;
-import com.huawei.hms.rn.map.RNHMSMapPackage;
-import com.huawei.hms.rn.site.RNHMSSitePackage;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -31,11 +26,6 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
-          packages.add(new RNHMSMapPackage());
-          packages.add(new HmsAccountPackage());
-          packages.add(new RNHMSAdsPackage());
-          packages.add(new RNHwPushPackage());
-          packages.add(new RNHMSSitePackage());
 
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
