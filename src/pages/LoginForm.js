@@ -69,13 +69,6 @@ export default class LoginForm extends Component {
           }
           onPress={onSignIn}
         />
-
-        <View style={styles.signUpArea}>
-          <Text style={styles.signUpDescription}>Don't have a account?</Text>
-          <TouchableOpacity>
-            <Text style={styles.signUpText}>See our stores near you</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
@@ -90,16 +83,5 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 20,
     marginVertical: 12,
-  },
-  signUpArea: {
-    alignItems: 'center',
-  },
-  signUpDescription: {
-    paddingVertical: 16,
-    color: '#999',
-  },
-  signUpText: {
-    paddingVertical: 8,
-    color: '#666',
   },
 });

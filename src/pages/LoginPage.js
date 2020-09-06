@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 export default class LoginPage extends Component {
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <SafeAreaView>
         <KeyboardAvoidingView>
@@ -30,6 +31,12 @@ export default class LoginPage extends Component {
                   </Text>
                 </View>
                 <LoginForm />
+                <View style={styles.signUpArea}>
+                  <Text style={styles.signUpDescription}>Don't have a account?</Text>
+                  <TouchableOpacity onPress={() => navigate('Map')}>
+                    <Text style={styles.signUpText}>See our stores near you</Text>
+                  </TouchableOpacity>
+                </View>
               </ScrollView>
             </View>
           </LinearGradient>
@@ -88,5 +95,16 @@ const styles = StyleSheet.create({
     color: 'grey',
     paddingVertical: 16,
     textAlign: 'center',
+  },
+  signUpArea: {
+    alignItems: 'center',
+  },
+  signUpDescription: {
+    paddingVertical: 16,
+    color: '#999',
+  },
+  signUpText: {
+    paddingVertical: 8,
+    color: '#666',
   },
 });
