@@ -1,22 +1,63 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
 import Input from '../components/Input';
 import MyButton from '../components/MyButton';
 import RNHMSAccount from '@hmscore/react-native-hms-account';
+import {log} from 'react-native-reanimated';
+
+const Logout = () => {
+  RNHMSAccount.HmsAccount.signOut()
+    .then((response) => {
+      console.log(JSON.stringify(response) + 'logout success');
+    })
+    .catch((err) => {
+      console.log(err + 'logout error');
+    });
+};
 
 const onSignIn = () => {
   let signInData = {
     huaweiIdAuthParams:
       RNHMSAccount.HmsAccount
         .CONSTANT_HUAWEI_ID_AUTH_PARAMS_DEFAULT_AUTH_REQUEST_PARAM,
-    scopes: [RNHMSAccount.HmsAccount.SCOPE_ID_TOKEN],
+    scopes: [
+      RNHMSAccount.HmsAccount.SCOPE_ID_TOKEN,
+      RNHMSAccount.HmsAccount.SCOPE_EMAIL,
+      RNHMSAccount.HmsAccount.SCOPE_ID,
+      RNHMSAccount.HmsAccount.SCOPE_ACCESS_TOKEN,
+      RNHMSAccount.HmsAccount.SCOPE_AUTHORIZATION_CODE,
+      RNHMSAccount.HmsAccount.SCOPE_PROFILE,
+    ],
   };
   RNHMSAccount.HmsAccount.signIn(signInData)
     .then((response) => {
-      logger(JSON.stringify(response));
+      console.log(JSON.stringify(response) + 'login success');
+      log(JSON.stringify(response));
+      return true;
     })
     .catch((err) => {
-      logger(err);
+      log(err);
+      return false;
+    });
+};
+
+const onGetAuthResult = () => {
+  RNHMSAccount.HuaweiIdAuthManager.getAuthResult()
+    .then((response) => {
+      console.log(JSON.stringify(response) + 'onGetAuthResult');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const onStartReadSMSManager = () => {
+  RNHMSAccount.SMSManager.startReadSMSManager()
+    .then((response) => {
+      console.log(JSON.stringify(response));
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
@@ -24,6 +65,7 @@ export default class LoginForm extends Component {
   render() {
     return (
       <View>
+        {onGetAuthResult()}
         <Input
           returnKeyType={'next'}
           placeholder="Username"
@@ -36,22 +78,12 @@ export default class LoginForm extends Component {
           placeholder="Password"
           inputRef={(input) => (this.passwordInput = input)}
         />
-        <Input
-          returnKeyType={'go'}
-          autoCapitilaze="none"
-          placeholder="Enter Code"
-          inputRef={(input) => (this.passwordInput = input)}
-        />
         <MyButton
-          text={'Get Code'}
+          text={'Sign In'}
           backgroundColor={'#BA5370'}
           color={'#F4E2D8'}
         />
-        <MyButton
-          text={'Sign Inn'}
-          backgroundColor={'#BA5370'}
-          color={'#F4E2D8'}
-        />
+        <Button title="Sign out" onPress={() => Logout()} />
         <RNHMSAccount.HuaweiIdAuthButton
           style={styles.viewcontainer}
           colorPolicy={
@@ -67,7 +99,7 @@ export default class LoginForm extends Component {
             RNHMSAccount.HmsAccount
               .CONSTANT_HUAWEI_ID_AUTH_BUTTON_CORNER_RADIUS_SMALL
           }
-          onPress={onSignIn}
+          onPress={() => onSignIn()}
         />
       </View>
     );

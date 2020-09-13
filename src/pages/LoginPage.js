@@ -32,9 +32,13 @@ export default class LoginPage extends Component {
                 </View>
                 <LoginForm />
                 <View style={styles.signUpArea}>
-                  <Text style={styles.signUpDescription}>Don't have a account?</Text>
+                  <Text style={styles.signUpDescription}>
+                    Don't have a account?
+                  </Text>
                   <TouchableOpacity onPress={() => navigate('Map')}>
-                    <Text style={styles.signUpText}>See our stores near you</Text>
+                    <Text style={styles.signUpText}>
+                      See our stores near you
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </ScrollView>

@@ -14,7 +14,9 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
-      <activity
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <meta-data android:name="com.huawei.hms.client.appid" android:value="102844691" />
+        <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
@@ -27,5 +29,4 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
-
 </manifest>
