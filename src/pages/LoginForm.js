@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
-import Input from '../components/Input';
-import MyButton from '../components/MyButton';
+import {StyleSheet, View, TextInput, onChangeText} from 'react-native';
 import RNHMSAccount from '@hmscore/react-native-hms-account';
-import {log} from 'react-native-reanimated';
+import Button from './Button';
 
 const Logout = () => {
   RNHMSAccount.HmsAccount.signOut()
@@ -32,11 +30,11 @@ const onSignIn = () => {
   RNHMSAccount.HmsAccount.signIn(signInData)
     .then((response) => {
       console.log(JSON.stringify(response) + 'login success');
-      log(JSON.stringify(response));
+      console.log(JSON.stringify(response));
       return true;
     })
     .catch((err) => {
-      log(err);
+      console.log(err);
       return false;
     });
 };
@@ -66,24 +64,50 @@ export default class LoginForm extends Component {
     return (
       <View>
         {onGetAuthResult()}
-        <Input
+        <TextInput
+          style={{
+            height: 40,
+            borderColor: 'grey',
+            borderWidth: 0.4,
+            borderRadius: 25,
+            margin: 8,
+          }}
           returnKeyType={'next'}
           placeholder="Username"
+          color="grey"
           autoCapitilaze="none"
+          onChangeText={(text) => onChangeText('bla')}
           onSubmitEditing={() => this.passwordInput.focus()}
+          value={'bla'}
         />
-        <Input
+        <TextInput
+          style={{
+            height: 40,
+            borderColor: 'grey',
+            borderWidth: 0.4,
+            borderRadius: 25,
+            margin: 8,
+          }}
           returnKeyType={'go'}
+          color="grey"
           secureTextEntry={true}
+          onSubmitEditing={() => this.passwordInput.focus()}
           placeholder="Password"
           inputRef={(input) => (this.passwordInput = input)}
+          value={'bla'}
         />
-        <MyButton
-          text={'Sign In'}
-          backgroundColor={'#BA5370'}
-          color={'#F4E2D8'}
+        <Button
+          style={{alignItems: 'center', alignContent: 'center', margin: 16}}
+          title={'Sign In'}
+          variant={'primary'}
+          {...{}}
         />
-        <Button title="Sign out" onPress={() => Logout()} />
+        <Button
+          style={{alignItems: 'center', alignContent: 'center', margin: 16}}
+          title={'Sign out'}
+          variant={'default'}
+          {...{Logout}}
+        />
         <RNHMSAccount.HuaweiIdAuthButton
           style={styles.viewcontainer}
           colorPolicy={
@@ -109,11 +133,21 @@ export default class LoginForm extends Component {
 const styles = StyleSheet.create({
   viewcontainer: {
     marginTop: 20,
-    height: 38,
+    borderRadius: 50,
+    height: 50,
+    width: 245,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 8,
   },
   textSignIn: {
     textAlign: 'left',
     fontSize: 20,
     marginVertical: 12,
+  },
+  btnSignIn: {
+    alignItems: 'center',
+    alignContent: 'center',
+    margin: 16,
   },
 });

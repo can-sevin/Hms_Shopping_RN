@@ -193,10 +193,10 @@ dependencies {
     implementation 'com.huawei.hms:ads-consent:3.4.30.301'
     implementation 'com.huawei.hms:ads-identifier:3.4.28.313'
     implementation 'com.huawei.hms:ads-installreferrer:3.4.28.313'
-
+    implementation 'com.facebook.fresco:animated-gif:2.0.0'
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    implementation project(':lottie-react-native')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
